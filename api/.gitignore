@@ -1,0 +1,9 @@
+**/node_modules
+**/build
+**/dist
+**/lib
+**/coverage
+
+# Ignore the following files:
+.DS_Store
+.idea
