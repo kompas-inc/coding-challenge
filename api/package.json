@@ -14,7 +14,8 @@
     "prisma:generate": "prisma generate",
     "prisma:push": "prisma db push",
     "db:local": "echo 'DATABASE_URL=postgresql://developer:coding_challenge_developer1@localhost:5432/coding_challenge_db?schema=public' > .env && echo 'Switched to local database connection'",
-    "db:docker": "echo 'DATABASE_URL=postgresql://developer:coding_challenge_developer1@coding-challenge-database:5432/coding_challenge_db?schema=public' > .env && echo 'Switched to docker database connection'"
+    "db:docker": "echo 'DATABASE_URL=postgresql://developer:coding_challenge_developer1@coding-challenge-database:5432/coding_challenge_db?schema=public' > .env && echo 'Switched to docker database connection'",
+    "seed": "ts-node prisma/seed.ts"
   },
   "keywords": [],
   "author": "",

@@ -4,7 +4,7 @@ import { database } from '../../prisma';
 
 export const leasesRouter: Router = Router();
 
-const getLeases = async (req: Request, res: Response) => {
+export const getLeases = async (_req: Request, res: Response) => {
   const leases = await database.leases.findMany();
 
   return res.json({

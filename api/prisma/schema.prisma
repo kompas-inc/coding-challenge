@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  seed     = "ts-node prisma/seed.ts"
 }
 
 datasource db {
@@ -15,7 +16,7 @@ datasource db {
 
 model Leases {
   id          Int      @id @default(autoincrement())
-  startDate   DateTime @default(now())
-  endDate     DateTime @default(now())
+  start_date  DateTime @default(now())
+  end_date    DateTime @default(now())
   tenant_name String
 }
