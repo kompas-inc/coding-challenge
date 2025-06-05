@@ -11,9 +11,9 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(express.json({ limit: '200kb' }));
 app.use(cookieParser());
 
-// Root endpoint for easy testing
-app.get('/', (req: Request, res: Response) => {
-  res.json({ status: 'API is running' });
-});
-
+app.get('/', (_req: Request, res: Response) => res.json({ status: 'Ok' }));
 app.use('/leases', Routers.leases);
+
+app.use((err: any, _req: Request, res: Response) => {
+  res.status(500).json({ error: err?.message || 'Internal Server Error' });
+});

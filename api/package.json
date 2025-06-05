@@ -6,21 +6,27 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "ts-node-dev --respawn --transpile-only index.ts",
+    "dev": "prisma generate && ts-node-dev --respawn --transpile-only index.ts",
     "docker": "docker-compose up --build",
     "docker:down": "docker-compose down",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "prisma:generate": "prisma generate",
+    "prisma:push": "prisma db push",
+    "db:local": "echo 'DATABASE_URL=postgresql://developer:coding_challenge_developer1@localhost:5432/coding_challenge_db?schema=public' > .env && echo 'Switched to local database connection'",
+    "db:docker": "echo 'DATABASE_URL=postgresql://developer:coding_challenge_developer1@coding-challenge-database:5432/coding_challenge_db?schema=public' > .env && echo 'Switched to docker database connection'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.11.0",
   "dependencies": {
+    "@prisma/client": "^6.9.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "http": "0.0.1-security"
+    "http": "0.0.1-security",
+    "pg": "^8.16.0"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",

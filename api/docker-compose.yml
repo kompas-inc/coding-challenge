@@ -11,10 +11,37 @@ services:
       - NODE_ENV=development
       - PORT=3001
       - FORCE_COLOR=1
+      - DATABASE_URL=postgresql://developer:coding_challenge_developer1@coding-challenge-database:5432/coding_challenge_db?schema=public
     volumes:
       - .:/app
-      - /app/node_modules
+      - ./node_modules:/app/node_modules
     command: pnpm dev
     restart: unless-stopped
     tty: true
     stdin_open: true
+    networks:
+      - coding-challenge-network
+    depends_on:
+      - coding-challenge-database
+
+  coding-challenge-database:
+    container_name: coding-challenge-database
+    image: postgres:16.1-alpine
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: coding_challenge_developer1
+      POSTGRES_DB: coding_challenge_db
+    networks:
+      - coding-challenge-network
+
+networks:
+  coding-challenge-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
